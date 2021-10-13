@@ -8,33 +8,38 @@ const phrases = [
   'Raining cats and dogs',
   'Mad as cut snakes'
 ];
-let missed;
-let phraseLetterCount;
+let missed = 0;
+let phraseLetterCount = 0;
+let firstGame = true;
 
-// hide start overlay when game begins
-start.addEventListener('click', () => {
-  missed = 0;
-  phraseLetterCount = 0;
-  document.getElementById('overlay').style.display = 'none';
-  addPhraseToDisplay(getRandomPhraseAsArray);
-});
-
-// takes a random phrase and splits it into a new array of characters
-const getRandomPhraseAsArray = array => {
-  // choose random array from phrases
-  let randomPhrase = array[Math.floor(Math.random() * array.length)];
-  return randomPhrase.split("");
+// loads phrase when page loads prior to user removivng overlay to start game. This was added to meet specific grading criteria for this project
+const loadPage = () => {
+  addPhraseToDisplay(phrases);
 };
 
-// adds lettters of a string to the display
-const addPhraseToDisplay = () => {
-  const input = getRandomPhraseAsArray(phrases);
+// hide start overlay when new game begins
+start.addEventListener('click', () => {
+  if (firstGame === true) {
+    document.getElementById('overlay').style.display = 'none';
+    firstGame = false;
+  } else {
+    // reset phrase and variables for new game
+    missed = 0;
+    phraseLetterCount = 0;
+    document.getElementById('overlay').style.display = 'none';
+    addPhraseToDisplay(phrases);
+  }
+});
+
+// takes a random phrase and splits it into a new array of characters then adds to the display
+const addPhraseToDisplay = array => {
+  let randomPhrase = array[Math.floor(Math.random() * array.length)].split("");
   const ul = document.querySelector('ul');
   // loop through array supplied by getRandomPhraseAsArray and create li item for each character
-  for (let i = 0; i < input.length; i++) {
+  for (let i = 0; i < randomPhrase.length; i++) {
     const li = document.createElement('li');
     // assign each letter the class 'letter' and space the clasee 'space'
-    li.textContent = input[i];
+    li.textContent = randomPhrase[i];
     if (li.textContent == ' ') {
       li.className = 'space';
     } else {
@@ -51,17 +56,14 @@ const addPhraseToDisplay = () => {
 // check if the letter clicked is in the phrase
 const checkLetter = button => {
   const letters = document.querySelectorAll('.letter');
-  let match = null;
   // loop thru letters and check if it matches the button letter clicked
   for (let i = 0; i < letters.length; i++) {
     // if button letter in letters, change class to display the li element
     if (button === letters[i].textContent.toLowerCase()) {
       letters[i].className = 'show';
-      match = button;
     }
   }
   checkWin();
-  return match;
 };
 
 // check if game has been won or lost
@@ -73,8 +75,7 @@ const  checkWin = () => {
     document.querySelector('.title').textContent = 'You got it! Well done.';
     document.getElementById('overlay').className = 'win';
     document.getElementById('overlay').style.display = 'flex';
-    start.className = 'reset';
-    document.querySelector('.reset').textContent = 'Play again';
+    start.textContent = 'Play again';
     removePhrase(ul);
     resetHearts();
     resetButtons();
@@ -84,8 +85,7 @@ const  checkWin = () => {
       document.querySelector('.title').textContent = 'Too bad! Try again.';
       document.getElementById('overlay').className = 'lose';
       document.getElementById('overlay').style.display = 'flex';
-      start.className = 'reset';
-      document.querySelector('.reset').textContent = 'Play again';
+      start.textContent = "Play again";
       removePhrase(ul);
       resetHearts();
       resetButtons();
@@ -147,3 +147,5 @@ qwerty.addEventListener('click', e => {
     checkLetter(button.textContent);
   }
 });
+
+window.onload = loadPage();
