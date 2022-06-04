@@ -6,7 +6,8 @@ const phrases = [
   'Bull in a china shop',
   'Fish out of water',
   'Raining cats and dogs',
-  'Mad as cut snakes'
+  'Mad as cut snakes',
+  "Have the lion's share"
 ];
 let missed = 0;
 let phraseLetterCount = 0;
@@ -42,6 +43,8 @@ const addPhraseToDisplay = array => {
     li.textContent = randomPhrase[i];
     if (li.textContent == ' ') {
       li.className = 'space';
+    } else if (li.textContent == "'") {
+      li.className = 'show'
     } else {
       li.className = 'letter';
       // tally the number of letters for the checkWin function
@@ -61,6 +64,7 @@ const checkLetter = button => {
     // if button letter in letters, change class to display the li element
     if (button === letters[i].textContent.toLowerCase()) {
       letters[i].className = 'show';
+      letters[i].style.animation = 'spin 2s'
     }
   }
   checkWin();
@@ -106,7 +110,6 @@ const resetHearts = () => {
     for (let i = 0; i < missed; i++) {
       li = document.getElementsByClassName('miss')[0];
       heart = li.firstElementChild;
-      heart.src = "images/liveHeart.png";
       li.className = "tries";
     }
   }
@@ -135,8 +138,8 @@ qwerty.addEventListener('click', e => {
       // change heart to lost heart image
       if (!charList.includes(button.textContent)) {
         li = document.getElementsByClassName('tries')[0];
-        heart = li.firstElementChild;
-        heart.src = "images/lostHeart.png";
+        button.style.animation = 'shake 1s'
+        li.style.animation = 'shake 1s'
         li.className = "miss";
         missed++;
       }
