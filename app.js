@@ -1,40 +1,46 @@
 const start = document.querySelector('.btn__reset');
 const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
-const phrases = [
-  'Go down the rabbit hole',
-  'Bull in a china shop',
-  'Fish out of water',
-  'Raining cats and dogs',
-  'Mad as cut snakes',
-  "Have the lion's share"
-];
+
+const answer = document.querySelector('.display__phrase');
+const meaning = document.querySelector('.display__meaning');
+const example = document.querySelector('.display__example');
+
+const images = document.querySelector('.img_container');
+
 let missed = 0;
 let phraseLetterCount = 0;
 let firstGame = true;
 
-// loads phrase when page loads prior to user removivng overlay to start game. This was added to meet specific grading criteria for this project
-const loadPage = () => {
-  addPhraseToDisplay(phrases);
-};
+async function loadPhrase() {
+  const res = await fetch('https://random-phrase.herokuapp.com/random-phrase');
+  const result = await res.json();
+  answer.textContent = result.phrase;
+  meaning.textContent = result.meaning;
+  example.textContent = result.example;
+  addPhraseToDisplay(result.phrase);
+}
 
 // hide start overlay when new game begins
 start.addEventListener('click', () => {
   if (firstGame === true) {
     document.getElementById('overlay').style.display = 'none';
+    images.style.display = 'flex';
     firstGame = false;
   } else {
     // reset phrase and variables for new game
     missed = 0;
     phraseLetterCount = 0;
     document.getElementById('overlay').style.display = 'none';
-    addPhraseToDisplay(phrases);
+    images.style.display = 'flex';
+    loadPhrase();
   }
 });
 
 // takes a random phrase and splits it into a new array of characters then adds to the display
 const addPhraseToDisplay = array => {
-  let randomPhrase = array[Math.floor(Math.random() * array.length)].split("");
+  // let randomPhrase = array[Math.floor(Math.random() * array.length)].split("");
+  let randomPhrase = array.split("");
   const ul = document.querySelector('ul');
   // loop through array supplied by getRandomPhraseAsArray and create li item for each character
   for (let i = 0; i < randomPhrase.length; i++) {
@@ -64,7 +70,7 @@ const checkLetter = button => {
     // if button letter in letters, change class to display the li element
     if (button === letters[i].textContent.toLowerCase()) {
       letters[i].className = 'show';
-      letters[i].style.animation = 'spin 2s'
+      letters[i].style.animation = 'spin 1s'
     }
   }
   checkWin();
@@ -76,23 +82,31 @@ const  checkWin = () => {
   const ul = document.querySelector('ul');
   // if letters with class show is equal to the number of letters with class letters, show win overlay screen
   if (shown.length === phraseLetterCount) {
-    document.querySelector('.title').textContent = 'You got it! Well done.';
-    document.getElementById('overlay').className = 'win';
-    document.getElementById('overlay').style.display = 'flex';
-    start.textContent = 'Play again';
-    removePhrase(ul);
-    resetHearts();
-    resetButtons();
-  } else {
-    // else if misses is 5 or more, show the overlay screen with lose class and text
-    if (missed > 4) {
-      document.querySelector('.title').textContent = 'Too bad! Try again.';
-      document.getElementById('overlay').className = 'lose';
+    setTimeout(function() {
+      document.querySelector('.title').textContent = 'You got it! Well done.';
+      document.getElementById('overlay').className = 'win';
       document.getElementById('overlay').style.display = 'flex';
-      start.textContent = "Play again";
+      document.querySelector('.display').style.display = 'block';
+      images.style.display = 'none';
+      start.textContent = 'Play again';
       removePhrase(ul);
       resetHearts();
       resetButtons();
+    }, 2000);
+  } else {
+    // else if misses is 5 or more, show the overlay screen with lose class and text
+    if (missed > 4) {
+      setTimeout(function() {
+        document.querySelector('.title').textContent = 'Too bad! Try again.';
+        document.getElementById('overlay').className = 'lose';
+        document.getElementById('overlay').style.display = 'flex';
+        document.querySelector('.display').style.display = 'none';
+        images.style.display = 'none';
+        start.textContent = "Play again";
+        removePhrase(ul);
+        resetHearts();
+        resetButtons();
+      }, 1000);
     }
   }
 };
@@ -110,7 +124,7 @@ const resetHearts = () => {
     for (let i = 0; i < missed; i++) {
       li = document.getElementsByClassName('miss')[0];
       heart = li.firstElementChild;
-      li.className = "tries";
+      li.className = "try";
     }
   }
 };
@@ -137,7 +151,7 @@ qwerty.addEventListener('click', e => {
       }
       // change heart to lost heart image
       if (!charList.includes(button.textContent)) {
-        li = document.getElementsByClassName('tries')[0];
+        li = document.getElementsByClassName('try')[0];
         button.style.animation = 'shake 1s'
         li.style.animation = 'shake 1s'
         li.className = "miss";
@@ -151,4 +165,4 @@ qwerty.addEventListener('click', e => {
   }
 });
 
-window.onload = loadPage();
+window.onload = loadPhrase();

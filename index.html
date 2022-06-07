@@ -5,23 +5,39 @@
     <title>Wheel of Success!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/styles.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Righteous&family=Roboto&display=swap" rel="stylesheet">
   </head>
   <body>
     <main>
+
       <div id="overlay" class="start">
         <h2 class="title">Guess that Phrase</h2>
-        <h3>Animal Idioms Edition</h3>
+        <h3 class="subtitle">Animal Idioms Edition</h3>
+        <div class="display">
+          <div class="display__phrase"></div>
+          <h3>Meaning</h3>
+          <div class="display__meaning"></div>
+          <h3>Example</h3>
+          <q class="display__example"></q>
+        </div>
         <a class="btn__reset">Start Game</a>
       </div>
 
       <div id="banner" class="section">
         <h2 class="header">Guess that Phrase</h2>
-        <h3>Animal Idioms Edition</h3>
+        <h3 class="subheader">Animal Idioms Edition</h3>
+        <div class="img_container">
+          <img src="./images/snake.png" alt="snake">
+          <img src="./images/elephant.png" alt="elephant">
+        </div>
       </div>
 
       <div id="phrase" class="section">
         <ul></ul>
       </div>
+
       <div id="qwerty" class="section">
         <div class="keyrow">
           <button>q</button><button>w</button><button>e</button><button>r</button><button>t</button><button>y</button><button>u</button><button>i</button><button>o</button><button>p</button>
@@ -36,11 +52,11 @@
 
       <div id="scoreboard" class="section">
         <ol>
-          <li class="tries"></li>
-          <li class="tries"></li>
-          <li class="tries"></li>
-          <li class="tries"></li>
-          <li class="tries"></li>
+          <li class="try"></li>
+          <li class="try"></li>
+          <li class="try"></li>
+          <li class="try"></li>
+          <li class="try"></li>
         </ol>
       </div>
     </main>

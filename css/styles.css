@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&Roboto:300');
-
-/* Variables */
+/* =================================================
+  variables
+==================================================== */
 
 :root {
   --color-win: #78CF82;
@@ -16,10 +16,13 @@
   --transition: all .2s ease-in-out;
 }
 
-/* main */
+/* =================================================
+  base elements
+==================================================== */
 
 * {
   box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -46,13 +49,16 @@ li, ol, ul {
 h2 {
   margin: 0;
   text-transform: uppercase;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Bangers', cursive;
   font-size: var(--font-size-large);
+  letter-spacing: 8px;
   margin: 0;
 }
 
 h3 {
-
+  font-family: 'Righteous', cursive;
+  font-size: var(--font-size-medium);
+  letter-spacing: 4px;
 }
 
 .section {
@@ -60,12 +66,120 @@ h3 {
   padding: 10px;
 }
 
-/* Title */
+/* =================================================
+  start, win, lose overlay
+==================================================== */
+
+#overlay {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  color: #FFFFFF;
+  justify-content: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 5px;
+}
+
+.title {
+  color: #FFD700;
+}
+
+.start {
+  background-color: var(--color-start);
+}
+
+.start a {
+  color: var(--color-win);
+}
+
+.win {
+  background-color: var(--color-win);
+}
+
+.win a {
+  color: var(--color-win);
+}
+
+.lose {
+  background-color: var(--color-lose);
+}
+
+.lose a {
+  color: var(--color-lose);
+}
+
+.win .subtitle, .lose .subtitle {
+  display: none;
+}
+
+.btn__reset {
+  padding: 8px;
+  margin: 50px auto;
+  background: #FFFFFF;
+  border-radius: 5px;
+  font-size: var(--font-size-medium);
+}
+
+/* hover effect adapted from https://www.proglobalbusinesssolutions.com/css-hover-effects/
+10) Glowing Icon Hover Effects */
+.btn__reset:hover {
+  cursor: pointer;
+  color: #57dd00;
+  box-shadow: 0 0 5px #57dd00;
+  text-shadow: 0 0 5px #57dd00;
+}
+
+.display {
+  display: none;
+  margin: 50px auto 0;
+  font-weight: bold;
+  background-color: #2E8B57;
+  max-width: 90%;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.display h3 {
+  color: #FFD700;
+  text-transform: uppercase;
+}
+.display__phrase {
+  font-size: 3rem;
+}
+
+.display__meaning, .display__example {
+  font-size: 2rem;
+}
+
+
+/* =================================================
+  game styles
+==================================================== */
+
+/* title */
 
 .header {
   color: var(--color-start);
 }
 
+.subheader {
+  color: #777;
+}
+
+/* images */
+
+.img_container {
+  display: none;
+  justify-content: space-evenly;
+  transform: translateY(-75px);
+}
+
+img {
+  max-height: 100px;
+}
 /* Phrase */
 
 .letter {
@@ -101,7 +215,7 @@ h3 {
         transform: rotateY(0);
     }
     100%{
-        transform: rotateY(1800deg);
+        transform: rotateY(1080deg);
     }
 }
 
@@ -142,41 +256,9 @@ button:hover {
   background-color: var(--color-neutral);
 }
 
-.btn__reset {
-  padding: 8px;
-  margin: 50px auto;
-  background: #FFFFFF;
-  border-radius: 5px;
-  font-size: var(--font-size-medium);
-}
-
-/* hover effect adapted from https://www.proglobalbusinesssolutions.com/css-hover-effects/
-10) Glowing Icon Hover Effects */
-.btn__reset:hover {
-  cursor: pointer;
-  color: #57dd00;
-  box-shadow: 0 0 5px #57dd00;
-  text-shadow: 0 0 5px #57dd00;
-}
-
-.reset {
-  padding: 8px;
-  margin: 50px auto;
-  background: #FFFFFF;
-  border-radius: 5px;
-  font-size: var(--font-size-medium);
-}
-
-.reset:hover {
-  cursor: pointer;
-  color: #57dd00;
-  box-shadow: 0 0 5px #57dd00;
-  text-shadow: 0 0 5px #57dd00;
-}
-
 /* hearts */
 
-.tries {
+.try {
   height: 35px;
   width: 30px;
   background-image: url(../images/liveHeart.png);
@@ -212,47 +294,4 @@ button:hover {
     transform: translate3d(4px, 0, 0);
   }
 
-}
-
-/* Overlay */
-
-#overlay {
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  color: #FFFFFF;
-  justify-content: center;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  border-radius: 5px;
-}
-
-.title {
-  color: #FFF;
-}
-
-.start {
-  background-color: var(--color-start);
-}
-
-.start a {
-  color: var(--color-win);
-}
-
-.win {
-  background-color: var(--color-win);
-}
-
-.win a {
-  color: var(--color-win);
-}
-
-.lose {
-  background-color: var(--color-lose);
-}
-
-.lose a {
-  color: var(--color-lose);
 }
