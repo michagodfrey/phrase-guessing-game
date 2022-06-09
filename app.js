@@ -2,22 +2,18 @@ const start = document.querySelector('.btn__reset');
 const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
 
-const answer = document.querySelector('.display__phrase');
-const meaning = document.querySelector('.display__meaning');
-const example = document.querySelector('.display__example');
-
-const images = document.querySelector('.img_container');
-
+// set variables used for game
 let missed = 0;
 let phraseLetterCount = 0;
 let firstGame = true;
 
+// fetch the random phrase from Heroku API, randomization generated on the server side
 async function loadPhrase() {
   const res = await fetch('https://random-phrase.herokuapp.com/random-phrase');
   const result = await res.json();
-  answer.textContent = result.phrase;
-  meaning.textContent = result.meaning;
-  example.textContent = result.example;
+  document.querySelector('.display__phrase').textContent = result.phrase;
+  document.querySelector('.display__meaning').textContent = result.meaning;
+  document.querySelector('.display__example').textContent = result.example;
   addPhraseToDisplay(result.phrase);
 }
 
@@ -25,21 +21,18 @@ async function loadPhrase() {
 start.addEventListener('click', () => {
   if (firstGame === true) {
     document.getElementById('overlay').style.display = 'none';
-    images.style.display = 'flex';
     firstGame = false;
   } else {
     // reset phrase and variables for new game
     missed = 0;
     phraseLetterCount = 0;
     document.getElementById('overlay').style.display = 'none';
-    images.style.display = 'flex';
     loadPhrase();
   }
 });
 
 // takes a random phrase and splits it into a new array of characters then adds to the display
 const addPhraseToDisplay = array => {
-  // let randomPhrase = array[Math.floor(Math.random() * array.length)].split("");
   let randomPhrase = array.split("");
   const ul = document.querySelector('ul');
   // loop through array supplied by getRandomPhraseAsArray and create li item for each character
@@ -50,7 +43,7 @@ const addPhraseToDisplay = array => {
     if (li.textContent == ' ') {
       li.className = 'space';
     } else if (li.textContent == "'") {
-      li.className = 'show'
+      li.className = 'show-start'
     } else {
       li.className = 'letter';
       // tally the number of letters for the checkWin function
@@ -87,7 +80,6 @@ const  checkWin = () => {
       document.getElementById('overlay').className = 'win';
       document.getElementById('overlay').style.display = 'flex';
       document.querySelector('.display').style.display = 'block';
-      images.style.display = 'none';
       start.textContent = 'Play again';
       removePhrase(ul);
       resetHearts();
@@ -101,7 +93,6 @@ const  checkWin = () => {
         document.getElementById('overlay').className = 'lose';
         document.getElementById('overlay').style.display = 'flex';
         document.querySelector('.display').style.display = 'none';
-        images.style.display = 'none';
         start.textContent = "Play again";
         removePhrase(ul);
         resetHearts();

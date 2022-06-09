@@ -29,15 +29,14 @@ body {
   justify-content: space-evenly;
   flex-direction: column;
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 main {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 100%;
-  max-height: 900px;
+  min-height: 100%;
   text-align: center;
 }
 
@@ -73,14 +72,14 @@ h3 {
 #overlay {
   display: flex;
   flex-direction: column;
-  position: fixed;
   color: #FFFFFF;
-  justify-content: center;
+  position: fixed;
+  overflow: scroll;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  border-radius: 5px;
+  min-height: 100vh;
 }
 
 .title {
@@ -89,6 +88,7 @@ h3 {
 
 .start {
   background-color: var(--color-start);
+  justify-content: center;
 }
 
 .start a {
@@ -97,6 +97,14 @@ h3 {
 
 .win {
   background-color: var(--color-win);
+  padding-top: 50px;
+}
+
+@media (min-width: 768px) {
+  .win {
+    padding-top: 0;
+    justify-content: center;
+  }
 }
 
 .win a {
@@ -105,6 +113,7 @@ h3 {
 
 .lose {
   background-color: var(--color-lose);
+  justify-content: center;
 }
 
 .lose a {
@@ -123,8 +132,6 @@ h3 {
   font-size: var(--font-size-medium);
 }
 
-/* hover effect adapted from https://www.proglobalbusinesssolutions.com/css-hover-effects/
-10) Glowing Icon Hover Effects */
 .btn__reset:hover {
   cursor: pointer;
   color: #57dd00;
@@ -154,7 +161,6 @@ h3 {
   font-size: 2rem;
 }
 
-
 /* =================================================
   game styles
 ==================================================== */
@@ -172,14 +178,20 @@ h3 {
 /* images */
 
 .img_container {
-  display: none;
-  justify-content: space-evenly;
-  transform: translateY(-75px);
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (min-width: 768px) {
+  .img_container {
+    justify-content: space-evenly;
+  }
 }
 
 img {
   max-height: 100px;
 }
+
 /* Phrase */
 
 .letter {
@@ -188,6 +200,7 @@ img {
   width: 65px;
   padding: 20px 1px 0 1px;
   margin-right: 2px;
+  margin-bottom: 8px;
   color: transparent;
   background: var(--color-neutral-light);
   border-radius: 5px;
@@ -203,11 +216,24 @@ img {
   width: 65px;
   padding: 20px 1px 0 1px;
   margin-right: 2px;
+  margin-bottom: 8px;
   color: #000;
-  background: #fff;
+  background-color: #F0F8FF;
   border: solid 1px;
   border-radius: 5px;
   transition: var(--transition);
+}
+
+.show-start {
+  font-size: var(--font-size-medium);
+  height: 65px;
+  width: 65px;
+  padding: 20px 1px 0 1px;
+  margin-right: 2px;
+  color: #000;
+  background-color: #F0F8FF;
+  border: solid 1px;
+  border-radius: 5px;
 }
 
 @keyframes spin {
@@ -224,6 +250,7 @@ img {
 .keyrow {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 button {
@@ -276,7 +303,6 @@ button:hover {
   background-repeat: no-repeat;
 }
 
-/*  animation from https://css-tricks.com/snippets/css/shake-css-keyframe-animation/ */
 @keyframes shake {
   10%, 90% {
     transform: translate3d(-1px, 0, 0);
