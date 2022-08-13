@@ -6,9 +6,11 @@ This project started out as a graded project for Treehouse TechDegree - Front En
 ## Improvement
 Months later, I was learning back end and changed the way the phrases are generated. I created a server side random phrase generation hosted by Heroku and some aesthetic improvements like animations and added definitions and examples of the phrases. I stuck with the original theme of animal idioms for the phrases and added more phrases.
 
-# [API GitHub repository](https://github.com/michagodfrey/phrase-api)
+# Links
 
-# [Heroku live site](https://random-phrase.herokuapp.com/)
+API GitHub repository [Link](https://github.com/michagodfrey/phrase-api)
+
+Heroku live site [Link](https://random-phrase.herokuapp.com/)
 
 # Screenshots
 
