@@ -1,10 +1,10 @@
 # Phrase guessing game
 
 ## Initial project
-This project started out as a graded project for Treehouse TechDegree - Front End Web Development. The aim was to practice JavaScript DOM manipulation with a phrase guessing game and it was a great challenge and built my confidence in JavaScript.
+This project started out as a graded project for [Treehouse TechDegree - Front End Web Development](https://teamtreehouse.com/techdegree/front-end-web-development). The aim was to practice JavaScript DOM manipulation with a phrase guessing game and it was a great challenge and built my confidence in JavaScript.
 
 ## Improvement
-Months later, I was learning back end and changed the way the phrases are generated. I created a server side random phrase generation hosted by Heroku and some aesthetic improvements like animations and added definitions and examples of the phrases. I stuck with the original theme of animal idioms for the phrases and added more phrases.
+Months later, I moved the phrases from the client side to the server side hosted by Heroku. I also made some aesthetic improvements like animations and added definitions and examples of the phrases. I stuck with the original theme of animal idioms for the phrases and added more phrases, increasing the original five to twelve.
 
 # Links
 
