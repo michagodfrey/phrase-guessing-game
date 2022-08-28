@@ -8,15 +8,23 @@ let missed = 0;
 let phraseLetterCount = 0;
 let firstGame = true;
 
-// fetch the random phrase from Heroku API, randomization generated on the server side
+// fetch the random phrase from Firebase, randomized phrase generated on the server side
 async function loadPhrase() {
-  const res = await fetch("https://us-central1-guess-animal-idiom.cloudfunctions.net/app/random-phrase");
-  const result = await res.json()
-  .then(loading.style.display = 'none');
-  document.querySelector('.display__phrase').textContent = result.phrase;
-  document.querySelector('.display__meaning').textContent = result.meaning;
-  document.querySelector('.display__example').textContent = result.example;
-  addPhraseToDisplay(result.phrase);
+  try {
+    const res = await fetch("https://us-central1-guess-animal-idiom.cloudfunctions.net/app/random-phrase");
+    const result = await res.json()
+    .then((result) => {
+      loading.style.display = 'none';
+      document.querySelector('.display__phrase').textContent = result.phrase;
+      document.querySelector('.display__meaning').textContent = result.meaning;
+      document.querySelector('.display__example').textContent = result.example;
+      addPhraseToDisplay(result.phrase);
+    });
+} catch(err) {
+  console.log(err);
+  loading.style.color = 'red';
+  loading.innerHTML = `Error fetching phrase, sorry about that :(`
+}
 }
 
 // hide start overlay when new game begins

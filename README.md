@@ -10,7 +10,7 @@ Months later, I moved the phrases from the client side to the server side hosted
 
 # Links
 
-API GitHub repository [Link](https://github.com/michagodfrey/phrase-api)
+API GitHub repository [Link](https://github.com/michagodfrey/phrase-api-firebase)
 
 Firebase live site [Link](https://us-central1-guess-animal-idiom.cloudfunctions.net/app/)
 
