@@ -1,6 +1,7 @@
 const start = document.querySelector('.btn__reset');
 const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
+const loading = document.querySelector(".loading");
 
 // set variables used for game
 let missed = 0;
@@ -9,8 +10,9 @@ let firstGame = true;
 
 // fetch the random phrase from Heroku API, randomization generated on the server side
 async function loadPhrase() {
-  const res = await fetch('https://random-phrase.herokuapp.com/random-phrase');
-  const result = await res.json();
+  const res = await fetch("https://us-central1-guess-animal-idiom.cloudfunctions.net/app/random-phrase");
+  const result = await res.json()
+  .then(loading.style.display = 'none');
   document.querySelector('.display__phrase').textContent = result.phrase;
   document.querySelector('.display__meaning').textContent = result.meaning;
   document.querySelector('.display__example').textContent = result.example;
@@ -80,6 +82,7 @@ const  checkWin = () => {
       document.getElementById('overlay').className = 'win';
       document.getElementById('overlay').style.display = 'flex';
       document.querySelector('.display').style.display = 'block';
+      loading.style.display = 'block'
       start.textContent = 'Play again';
       removePhrase(ul);
       resetHearts();
@@ -93,6 +96,7 @@ const  checkWin = () => {
         document.getElementById('overlay').className = 'lose';
         document.getElementById('overlay').style.display = 'flex';
         document.querySelector('.display').style.display = 'none';
+        loading.style.display = 'block'
         start.textContent = "Play again";
         removePhrase(ul);
         resetHearts();

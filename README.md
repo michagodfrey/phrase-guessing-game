@@ -6,11 +6,13 @@ This project started out as a graded project for [Treehouse TechDegree - Front E
 ## Improvement
 Months later, I moved the phrases from the client side to the server side hosted by Heroku. I also made some aesthetic improvements like animations and added definitions and examples of the phrases. I stuck with the original theme of animal idioms for the phrases and added more phrases, increasing the original five to twelve.
 
+**Update Aug 2022:** I moved the server to Firebase as Heroku was withdrawing its free hosting. I also added two new phrases and improved the mobile layout although tablet and desktop screens still offer a better user experience.
+
 # Links
 
 API GitHub repository [Link](https://github.com/michagodfrey/phrase-api)
 
-Heroku live site [Link](https://random-phrase.herokuapp.com/)
+Firebase live site [Link](https://us-central1-guess-animal-idiom.cloudfunctions.net/app/)
 
 # Screenshots
 
