@@ -18,9 +18,9 @@ Firebase live site [Link](https://us-central1-guess-animal-idiom.cloudfunctions.
 
 ## Screenshots
 
-![Playing page](./images/guess-that-phrase.png)
+![Playing page](./images/screenshot-play.png)
 
-![Win overlay](./images/guess-that-phrase-win.png)
+![Win overlay](./images/screenshot-win.png)
 
 ## Acknowledgements
 

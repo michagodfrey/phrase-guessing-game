@@ -7,8 +7,7 @@
   --color-lose: #D94545;
   --color-start: #5b85b7;
   --color-neutral: #445069;
-  --color-keys: #37474F;
-  --color-keys-hover: #a64d4d;
+  --color-white: #FFFFF0;
   --font-size-large: 60px;
   --font-size-medium: 20px;
   --transition: all .2s ease-in-out;
@@ -48,7 +47,7 @@ li, ol, ul {
 }
 
 ol {
-  background-color: #FFFFF0;
+  background-color: var(--color-white);
   padding: .5rem .75rem .0;
   border-radius: 20px;
 }
@@ -63,6 +62,8 @@ h2 {
   font-family: 'Bangers', cursive;
   letter-spacing: 8px;
   margin: 0;
+  color: midnightblue;
+  text-shadow: 0 1px 0px #FFD700, 1px 0 0px #FFA500, 1px 2px 1px #FFD700, 2px 1px 1px #FFA500, 2px 3px 2px #FFD700, 3px 2px 2px #FFA500, 3px 4px 2px #FFD700, 4px 3px 3px #FFA500, 4px 5px 3px #FFD700, 5px 4px 2px #FFA500, 5px 6px 2px #FFD700, 6px 5px 2px #FFA500, 6px 7px 1px #FFD700, 7px 6px 1px #FFA500, 7px 8px 0px #FFD700, 8px 7px 0px #FFA500;
 }
 
 @media (min-width: 768px){
@@ -77,11 +78,6 @@ h3 {
   letter-spacing: 4px;
 }
 
-.section {
-  width: 100%;
-  padding: 10px;
-}
-
 /* =================================================
   start, win, lose overlay
 ==================================================== */
@@ -89,7 +85,7 @@ h3 {
 #overlay {
   display: flex;
   flex-direction: column;
-  color: #FFFFFF;
+  color: var(--color-white);
   position: fixed;
   overflow: scroll;
   top: 0;
@@ -97,11 +93,6 @@ h3 {
   left: 0;
   right: 0;
   min-height: 100vh;
-}
-
-.title {
-  color: midnightblue;
-  text-shadow: 0 1px 0px #FFD700, 1px 0 0px #FFA500, 1px 2px 1px #FFD700, 2px 1px 1px #FFA500, 2px 3px 2px #FFD700, 3px 2px 2px #FFA500, 3px 4px 2px #FFD700, 4px 3px 3px #FFA500, 4px 5px 3px #FFD700, 5px 4px 2px #FFA500, 5px 6px 2px #FFD700, 6px 5px 2px #FFA500, 6px 7px 1px #FFD700, 7px 6px 1px #FFA500, 7px 8px 0px #FFD700, 8px 7px 0px #FFA500;
 }
 
 .start {
@@ -145,7 +136,7 @@ h3 {
 .btn__reset {
   padding: 8px;
   margin: 50px auto;
-  background: #FFFFFF;
+  background: var(--color-white);
   border-radius: 5px;
   font-size: var(--font-size-medium);
 }
@@ -185,11 +176,6 @@ h3 {
 ==================================================== */
 
 /* title */
-
-.heading {
-  color: midnightblue;
-  text-shadow: 0 1px 0px #FFD700, 1px 0 0px #FFA500, 1px 2px 1px #FFD700, 2px 1px 1px #FFA500, 2px 3px 2px #FFD700, 3px 2px 2px #FFA500, 3px 4px 2px #FFD700, 4px 3px 3px #FFA500, 4px 5px 3px #FFD700, 5px 4px 2px #FFA500, 5px 6px 2px #FFD700, 6px 5px 2px #FFA500, 6px 7px 1px #FFD700, 7px 6px 1px #FFA500, 7px 8px 0px #FFD700, 8px 7px 0px #FFA500;
-}
 
 .subheading {
   color: maroon;
@@ -244,7 +230,7 @@ img {
   margin-right: 2px;
   margin-bottom: 8px;
   color: #000;
-  background-color: white;
+  background-color: var(--color-white);
   font-weight: bold;
   border: solid 2px;
   border-radius: 5px;
@@ -256,7 +242,7 @@ img {
   width: 20px;
   margin-right: 2px;
   color: #000;
-  background-color: white;
+  background-color: var(--color-white);
   border: solid 2px var(--color-neutral);
   border-radius: 5px;
   font-weight: bold;
@@ -300,7 +286,7 @@ button {
   margin: 6px;
   border: 1px solid transparent;
   padding: .5rem 1rem;
-  color: white;
+  color: var(--color-white);
   background-color: maroon;
   border-radius: 5px;
   -webkit-transition: var(--transition);
@@ -310,13 +296,13 @@ button {
 
 button:hover {
   cursor: pointer;
-  background-color: var(--color-keys-hover);
+  background-color: #a64d4d;
 }
 
 .chosen {
   background: var(--color-neutral);
   border-radius: 5px;
-  color: #FFFFFF;
+  color: var(--color-white);
 }
 
 .chosen:hover {
