@@ -1,5 +1,7 @@
 # Phrase guessing game
 
+This project has been retired.
+
 ## Initial project
 
 This project started out as a graded project for [Treehouse TechDegree - Front End Web Development](https://teamtreehouse.com/techdegree/front-end-web-development). The aim was to practice JavaScript DOM manipulation with a phrase guessing game and it was a great challenge and built my confidence in JavaScript.
